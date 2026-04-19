@@ -7,15 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="library"></div>
-
-    <form id="bookForm">
-        <input type="text" id="title" placeholder="title" required>
-        <input type="text" id="author" placeholder="author" required>
-        <input type="number" id="pages" placeholder="pages" required>
-        <input type="checkbox" id="read"> Read
-        <button type="submit">Add book</button>
+    <form class="book-form" id="bookForm">
+        <input type="text" class="title input" id="title" placeholder="title" required>
+        <input type="text" class="author input" id="author" placeholder="author" required>
+        <input type="number" class="pages input" id="pages" placeholder="pages" required>
+        <div class="read"><input type="checkbox" id="read"> Read</div>
+        <button type="submit" class="submit input">Add book</button>
     </form>
+
+    <div class="library" id="library"></div>
 
     <script src="script.js"></script>
 </body>

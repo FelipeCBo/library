@@ -19,6 +19,7 @@ function displayBooks() {
 
     myLibrary.forEach(book => {
         const div = document.createElement("div");
+        div.classList.add("book-card")
 
         div.innerHTML = `
             <h3>${book.title}</h3>
@@ -26,17 +27,17 @@ function displayBooks() {
             <p>${book.pages} pages</p>
             <p>${book.read ? "Read" : "Not read"}</p>
 
-            <button onclick="removeBook('${book.id}')">Remove</button>
-            <button onclick="toggleRead('${book.id}')">Toggle Read</button>
+            <button class="remove-button" onclick="removeBook('${book.id}')">Remove</button>
+            <button class="toggleRead" onclick="toggleRead('${book.id}')">Toggle Read</button>
         `;
 
         container.appendChild(div);
     });
 }
 
-const Form = document.getElementById("bookForm");
+const form = document.getElementById("bookForm");
 
-Form.addEventListener("submit", function(e) {
+form.addEventListener("submit", function(e) {
     e.preventDefault();
 
     const title = document.getElementById("title").value;
@@ -46,11 +47,14 @@ Form.addEventListener("submit", function(e) {
 
     addBookToLibrary(title, author, pages, read);
     displayBooks();
+    form.reset();
 });
 
 function removeBook(id) {
     const index = myLibrary.findIndex(book => book.id === id);
-    myLibrary.splice(index, 1);
+    if (index !== -1) { 
+        myLibrary.splice(index, 1);
+    }
     displayBooks();
 };
 
@@ -58,10 +62,13 @@ Book.prototype.toggleRead = function() {
     this.read = !this.read;
 };
 
-<button onclick="toggleRead('%(book.id}')">Toggle Read</button>
-
 function toggleRead(id) {
     const book = myLibrary.find(book => book.id === id);
-    book.toggleRead();
+    if (book) {
+        book.toggleRead();
+    };
     displayBooks();
 };
+
+addBookToLibrary("Dom Casmurro", "Miguel de Cervantes", 300, true)
+displayBooks()
